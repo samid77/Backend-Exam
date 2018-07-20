@@ -46,15 +46,29 @@ app.post('/saveData', (req, res) => {
     var kodepinNasabah = req.body.kodepin;
 
     var sql = `INSERT INTO nasabah VALUES("${''}", "${namaNasabah}", "${emailNasabah}", "${alamatNasabah}", "${hpNasabah}", "${'Pria'}", "${tanggalNasabah}", "${rekeningNasabah}", "${kodepinNasabah}", "${'User'}", "${''}", "${''}", "${''}")`;
-
-    db.query(sql, (err, result) => {
+    db.query(`SELECT * FROM nasabah WHERE nomor_rekening = "${rekeningNasabah}"`, (err, rows) => {
         if(err){
             throw err;
-        } else {
-            var status = 'oke';
-            res.send('Database tersimpan');
+        } else if(!rows.length) {
+            db.query(sql, (err, result) => {
+                if(err){
+                    throw err;
+                } else {
+                    var status = 'oke';
+                    res.send(status);
+                }
+            });
         }
     });
+
+    // db.query(sql, (err, result) => {
+    //     if(err){
+    //         throw err;
+    //     } else {
+    //         var status = 'oke';
+    //         res.send(status);
+    //     }
+    // });
 });
 
 /** Grab Data Nasabah untuk di edit */
@@ -90,7 +104,8 @@ app.post('/updateData', (req, res) => {
         if(err) {
             throw err;
         } else {
-            res.send(result);
+            var status = 'oke';
+            res.send(status);
         }
     });
 
@@ -103,7 +118,8 @@ app.post('/deleteData', (req, res) => {
         if(err) {
             throw err;
         } else {
-            res.send(result);
+            var status = 'oke';
+            res.send(status);
         }
     });
 

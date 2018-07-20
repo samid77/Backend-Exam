@@ -6,6 +6,8 @@ import DaftarNasabah from './components/DaftarNasabah';
 import FormEdit from './components/FormEdit';
 import Login from './components/Login';
 import AdminLogin from './components/AdminLogin';
+import Transfer from './components/Transfer';
+import SetorTunai from './components/SetorTunai';
 
 import './App.css';
 
@@ -18,6 +20,8 @@ class App extends Component {
         <Route path="/adminlogin" component={AdminLogin}/>
         <Route path="/daftarnasabah" component={DaftarNasabah}/>
         <Route path="/editdata" component={FormEdit} />
+        <Route path="/setortunai" component={SetorTunai} />
+        <Route path="/transfer" component={Transfer} />
 
       </div>
     );

@@ -162,12 +162,12 @@ class Header extends Component {
                             </a>
                             <ul className="treeview-menu">
                                 <li>
-                                    <a href="listProduct.html">
-                                    <i className="fa fa-circle-o text-success" />Setor Tunai</a>
+                                    <Link to="/setortunai">
+                                    <i className="fa fa-circle-o text-success" />Setor Tunai</Link>
                                 </li>
                                 <li>
-                                    <a href="listProduct.html">
-                                    <i className="fa fa-circle-o text-success" />Transfer</a>
+                                    <Link to="/transfer">
+                                    <i className="fa fa-circle-o text-success" />Transfer</Link>
                                 </li>
                             </ul>
                         </li>

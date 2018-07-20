@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import Header from './Header';
+import { Redirect } from 'react-router-dom';
 
 
 class FormEdit extends Component {
@@ -17,6 +18,8 @@ class FormEdit extends Component {
     jeniskelamin: '',
     username: '',
     password: '',
+    status: <br />,
+    redirect: false,
   }
   componentDidMount() {
       var id = this.props.location.state.IDnasabah;
@@ -38,6 +41,7 @@ class FormEdit extends Component {
       });
   }
   updateData = (e) => {
+    var self = this;
     axios.post(`http://localhost:8002/updateData`, {
         id: e.userid.value,
         namalengkap: e.namalengkap.value,
@@ -46,11 +50,28 @@ class FormEdit extends Component {
         nomorhandphone: e.nomorhandphone.value,
         jeniskelamin: e.jeniskelamin.value,
         tanggallahir: e.tanggallahir.value,
+    }).then((response) => {
+        var serverResponse = response.data;
+        if(serverResponse === 'oke'){
+            self.setState({
+                redirect: true,
+            });
+        } else if(serverResponse === -1){
+            self.setState({
+                status: 'Data gagal dimasukan',
+            });
+        }
     });
+  }
+  renderRedirect = () => {
+    if (this.state.redirect) {
+      return <Redirect to='/daftarnasabah'/>
+    }
   }
   render() {
     return (
       <div>
+        {this.renderRedirect()}
         <Header />
           <div className="content-wrapper">
             <section className="content">

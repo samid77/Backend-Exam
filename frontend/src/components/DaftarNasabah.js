@@ -2,11 +2,14 @@ import React, { Component } from 'react';
 import {Link} from 'react-router-dom';
 import Header from './Header';
 import axios from 'axios';
+import { Redirect } from 'react-router-dom';
 
 class DaftarNasabah extends Component {
   state = {
       datanasabah: [],
       alert: null,
+      status: <br />,
+      redirect: false,
   }
   componentDidMount() {
       axios.get(`http://localhost:8002/daftarnasabah`)
@@ -18,6 +21,7 @@ class DaftarNasabah extends Component {
         });
   }
   saveData = (e) => {
+    var self = this;
     axios.post(`http://localhost:8002/saveData`, {
         namalengkap: e.namalengkap.value,
         email: e.email.value,
@@ -26,11 +30,40 @@ class DaftarNasabah extends Component {
         tanggallahir: e.tanggallahir.value,
         rekening: e.rekening.value,
         kodepin: e.kodepin.value,
+    }).then((response) => {
+        var serverResponse = response.data;
+        if(serverResponse === 'oke'){
+            self.setState({
+                redirect: true,
+            });
+        } else if(serverResponse === 'gagal'){
+            self.setState({
+                status: 'Data gagal dimasukan',
+            });
+        }
     });
   }
 
   deleteData = (e) => {
-    axios.post(`http://localhost:8002/deleteData`, {id: e});
+    var self = this;
+    axios.post(`http://localhost:8002/deleteData`, {id: e})
+    .then((response) => {
+        var serverResponse = response.data;
+        if(serverResponse === 'oke'){
+            self.setState({
+                redirect: true,
+            });
+        } else if(serverResponse === 'gagal'){
+            self.setState({
+                status: 'Data gagal dimasukan',
+            });
+        }
+    });
+  }
+  renderRedirect = () => {
+    if (this.state.redirect) {
+      return <Redirect to='/daftarnasabah'/>
+    }
   }
   render() {
     const data = this.state.datanasabah.map(
@@ -63,6 +96,7 @@ class DaftarNasabah extends Component {
     );
     return (
         <div>
+            {this.renderRedirect()}
             <Header />
             <div className="content-wrapper">
             {/* Content Header (Page header) */}
@@ -155,7 +189,7 @@ class DaftarNasabah extends Component {
                                         </div>
                                         <div className="form-group">
                                             <label>Jenis Kelamin</label>
-                                            <select class="form-control">
+                                            <select className="form-control">
                                                 <option ref="pria">Pria</option>
                                                 <option ref="wanita">Wanita</option>
                                             </select>
