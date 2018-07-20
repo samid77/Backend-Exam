@@ -8,11 +8,11 @@ class Header extends Component {
             <header className="main-header">
                 <a href="index.html" className="logo">
                     <span className="logo-mini">
-                        <b id="brand">W</b>M
+                        <b id="brand">V</b>B
                     </span>
                     {/* logo for regular state and mobile devices */}
                     <span className="logo-lg">
-                        <b id="brand">Wise</b>Monkey
+                        <b id="brand">Vincent</b>BANK
                     </span>
                 </a>
                 <nav className="navbar navbar-static-top" id="navBar">
@@ -93,10 +93,8 @@ class Header extends Component {
                                 {/* Menu Footer*/}
                                 <li className="user-footer">
                                     <div className="text-center">
-                                        <a href="profile.html" className="btn btn-primary btn-flat" style={{marginTop: 10}}>
-                                        <i className="fa fa-black-tie" /> Profile</a>&nbsp;
-                                        <a href="login.html" className="btn btn-danger btn-flat" style={{marginTop: 10}}>
-                                        <i className="fa fa-sign-out" /> Sign out</a>
+                                        <Link to="/" className="btn btn-danger btn-flat" style={{marginTop: 10}}>
+                                        <i className="fa fa-sign-out" /> Sign out</Link>
                                     </div>
                                 </li>
                             </ul>
@@ -141,23 +139,23 @@ class Header extends Component {
                         </li>
                         <li className="treeview">
                             <a href="#">
-                                <i className="fa fa-cubes" />
-                                <span>Products</span>
+                                <i className="fa fa-database" />
+                                <span>Data Nasabah</span>
                                 <span className="pull-right-container">
                                     <i className="fa fa-angle-left pull-right" />
                                 </span>
                             </a>
                             <ul className="treeview-menu">
                                 <li>
-                                    <Link to="/productlist">
-                                    <i className="fa fa-circle-o text-success" />Products List</Link>
+                                    <Link to="/daftarnasabah">
+                                    <i className="fa fa-circle-o text-success" />Daftar Nasabah</Link>
                                 </li>
                             </ul>
                         </li>
                         <li className="treeview">
                             <a href="#">
-                            <i className="fa fa-tags" />
-                            <span>Category</span>
+                            <i className="fa fa-money" />
+                            <span>Fitur Transaksi</span>
                             <span className="pull-right-container">
                                 <i className="fa fa-angle-left pull-right" />
                             </span>
@@ -165,27 +163,12 @@ class Header extends Component {
                             <ul className="treeview-menu">
                                 <li>
                                     <a href="listProduct.html">
-                                    <i className="fa fa-circle-o text-success" />Category List</a>
+                                    <i className="fa fa-circle-o text-success" />Setor Tunai</a>
                                 </li>
-                            </ul>
-                        </li>
-                        <li className="treeview">
-                            <a href="#">
-                            <i className="fa fa-user" />
-                            <span>User Management</span>
-                            <span className="pull-right-container">
-                                <i className="fa fa-angle-left pull-right" />
-                            </span>
-                            </a>
-                            <ul className="treeview-menu">
-                            <li>
-                                <a href="formProduct.html">
-                                <i className="fa fa-circle-o text-success" />User List</a>
-                            </li>
-                            <li>
-                                <a href="formProduct.html">
-                                <i className="fa fa-circle-o text-success" />Invoice History</a>
-                            </li>
+                                <li>
+                                    <a href="listProduct.html">
+                                    <i className="fa fa-circle-o text-success" />Transfer</a>
+                                </li>
                             </ul>
                         </li>
                     </ul>

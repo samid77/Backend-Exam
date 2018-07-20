@@ -3,22 +3,22 @@ import {Link} from 'react-router-dom';
 import Header from './Header';
 import axios from 'axios';
 
-class Products extends Component {
+class DaftarNasabah extends Component {
   state = {
-      dataproduk: [],
+      datanasabah: [],
       alert: null,
   }
   componentDidMount() {
-      axios.get(`http://localhost:8003/productlist`)
+      axios.get(`http://localhost:8002/daftarnasabah`)
         .then((getData) => {
             console.log(getData.data);
             this.setState({
-                dataproduk: getData.data,
+                datanasabah: getData.data,
             });
         });
   }
   saveData = (e) => {
-    axios.post(`http://localhost:8003/saveData`, {
+    axios.post(`http://localhost:8002/saveData`, {
         productname: e.productname.value,
         productcode: e.productcode.value,
         price: e.price.value,
@@ -26,23 +26,29 @@ class Products extends Component {
     });
   }
   render() {
-    const data = this.state.dataproduk.map(
+    const data = this.state.datanasabah.map(
         (d, index) => {
             var number = index + 1;
-            var productID = d.id;
-            var productCode = d.product_code;
-            var productName = d.product_name;
-            var productDescription = d.description;
-            var price = d.price;
+            var IDnasabah = d.id;
+            var namaNasabah = d.nama_lengkap;
+            var rekeningNasabah = d.nomor_rekening;
+            var emailNasabah = d.email;
+            var nomorNasabah = d.nomor_handphone;
+            var genderNasabah = d.jenis_kelamin;
+            var tanggalLahir = d.tanggal_lahir;
+            var alamatNasabah = d.alamat;
 
             return <tr key={index} style={{textAlign: 'center'}}>
             <td>{number}</td>
-            <td>{productCode}</td>
-            <td>{productName}</td>
-            <td>{productDescription}</td>
-            <td>{price}</td>
+            <td>{namaNasabah}</td>
+            <td>{rekeningNasabah}</td>
+            <td>{emailNasabah}</td>
+            <td>{tanggalLahir}</td>
+            <td>{alamatNasabah}</td>
+            <td>{nomorNasabah}</td>
+            <td>{genderNasabah}</td>
             <td>
-                <Link to={{pathname: '/editdata', state: {productID: productID}}} className="btn btn-sm btn-flat btn-warning"><i className="fa fa-pencil"></i> Edit</Link>&nbsp;
+                <Link to={{pathname: '/editdata', state: {IDnasabah: IDnasabah}}} className="btn btn-sm btn-flat btn-warning"><i className="fa fa-pencil"></i> Edit</Link>&nbsp;
                 <button className="btn btn-sm btn-flat btn-danger"><i className="fa fa-remove"></i> Delete</button>
             </td>
         </tr>
@@ -54,7 +60,7 @@ class Products extends Component {
             <div className="content-wrapper">
             {/* Content Header (Page header) */}
                 <section className="content-header">
-                    <h1>Product List</h1>
+                    <h1>Data Nasabah</h1>
                     <ol className="breadcrumb">
                         <li><a href="#"><i className="fa fa-dashboard" /> Home</a></li>
                         <li><a href="#">Tables</a></li>
@@ -71,15 +77,18 @@ class Products extends Component {
                             </div>
                             {/* /.box-header */}
                             <div className="box-body">
-                                <button data-toggle="modal" data-target="#modal-default" className="btn btn-primary btn-flat btn-md" style={{marginBottom: '20px'}}><i className="fa fa-plus-circle"></i> Add Product Data</button>
+                                <button data-toggle="modal" data-target="#modal-default" className="btn btn-primary btn-flat btn-md" style={{marginBottom: '20px'}}><i className="fa fa-plus-circle"></i> Tambah Data Nasabah</button>
                                 <table id="example1" className="table table-bordered table-striped">
                                     <thead>
                                         <tr>
                                             <th>No</th>
-                                            <th>Product Code</th>
-                                            <th>Product Name</th>
-                                            <th>Description</th>
-                                            <th>Price</th>
+                                            <th>Nama Nasabah</th>
+                                            <th>Nomor Rekening</th>
+                                            <th>Email</th>
+                                            <th>Tanggal Lahir</th>
+                                            <th>Alamat</th>
+                                            <th>Nomor Handphone</th>
+                                            <th>Jenis Kelamin</th>
                                             <th>Actions</th>
                                         </tr>
                                     </thead>
@@ -89,10 +98,13 @@ class Products extends Component {
                                     <tfoot>
                                         <tr>
                                             <th>No</th>
-                                            <th>Product Code</th>
-                                            <th>Product Name</th>
-                                            <th>Description</th>
-                                            <th>Price</th>
+                                            <th>Nama Nasabah</th>
+                                            <th>Nomor Rekening</th>
+                                            <th>Email</th>
+                                            <th>Tanggal Lahir</th>
+                                            <th>Alamat</th>
+                                            <th>Nomor Handphone</th>
+                                            <th>Jenis Kelamin</th>
                                             <th>Actions</th>
                                         </tr>
                                     </tfoot>
@@ -132,7 +144,7 @@ class Products extends Component {
                                         </div>
                                         <div className="form-group">
                                             <label>Product Description</label>
-                                            <textarea ref="productdescription" class="textarea" placeholder="Place some text here"
+                                            <textarea ref="productdescription" className="textarea" placeholder="Place some text here"
                                             style={{width: '100%', height: '200px',lineHeight: '18px', border: '1px solid #dddddd',padding: '10px'}}></textarea>
                                         </div>
                                         <div className="form-group">
@@ -158,4 +170,4 @@ class Products extends Component {
     )
   }
 }
-export default Products;
+export default DaftarNasabah;
