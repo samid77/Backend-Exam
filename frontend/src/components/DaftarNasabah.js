@@ -19,10 +19,13 @@ class DaftarNasabah extends Component {
   }
   saveData = (e) => {
     axios.post(`http://localhost:8002/saveData`, {
-        productname: e.productname.value,
-        productcode: e.productcode.value,
-        price: e.price.value,
-        description: e.productdescription.value
+        namalengkap: e.namalengkap.value,
+        email: e.email.value,
+        alamat: e.alamat.value,
+        handphone: e.handphone.value,
+        tanggallahir: e.tanggallahir.value,
+        rekening: e.rekening.value,
+        kodepin: e.kodepin.value,
     });
   }
   render() {
@@ -125,32 +128,45 @@ class DaftarNasabah extends Component {
                         <div className="modal-header" style={{backgroundColor: '#0a2a6b', color: 'white'}}>
                             <button type="button" className="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">×</span></button>
-                            <h4 className="modal-title">Products Form</h4>
+                            <h4 className="modal-title">Form Nasabah</h4>
                         </div>
                         <div className="modal-body">
                             <form role="form">
                                     <div className="box-body">
                                         <div className="form-group">
-                                            <label>Product Code</label>
-                                            <input className="form-control" ref="productcode" placeholder="Product Code" type="text"/>
+                                            <label>Nama Lengkap</label>
+                                            <input className="form-control" ref="namalengkap" placeholder="Nama Lengkap Nasabah" type="text"/>
                                         </div>
                                         <div className="form-group">
-                                            <label>Product Name</label>
-                                            <input className="form-control" ref="productname" placeholder="Product Name" type="text" />
+                                            <label>Alamat Email</label>
+                                            <input className="form-control" ref="email" placeholder="Alamat Email Nasabah" type="text" />
                                         </div>
                                         <div className="form-group">
-                                            <label>Product Price</label>
-                                            <input className="form-control" ref="price" placeholder="Product Price" type="text"/>
+                                            <label>Alamat</label>
+                                            <input className="form-control" ref="alamat" placeholder="Alamat tinggal nasabah" type="text"/>
                                         </div>
                                         <div className="form-group">
-                                            <label>Product Description</label>
-                                            <textarea ref="productdescription" className="textarea" placeholder="Place some text here"
-                                            style={{width: '100%', height: '200px',lineHeight: '18px', border: '1px solid #dddddd',padding: '10px'}}></textarea>
+                                            <label>Nomor Handphone</label>
+                                            <input className="form-control" ref="handphone" placeholder="Nomor Handphone Nasabah" type="text"/>
                                         </div>
                                         <div className="form-group">
-                                            <label>File input</label>
-                                            <input type="file" />
-                                            <p className="help-block">Example block-level help text here.</p>
+                                            <label>Jenis Kelamin</label>
+                                            <select class="form-control">
+                                                <option ref="pria">Pria</option>
+                                                <option ref="wanita">Wanita</option>
+                                            </select>
+                                        </div>
+                                        <div className="form-group">
+                                            <label>Tanggal Lahir</label>
+                                            <input className="form-control" ref="tanggallahir" placeholder="YYYY-MM-DD" type="text"/>
+                                        </div>
+                                        <div className="form-group">
+                                            <label>Nomor Rekening</label>
+                                            <input className="form-control" ref="rekening" placeholder="Masukan nomor rekening untuk nasabah" type="text"/>
+                                        </div>
+                                        <div className="form-group">
+                                            <label>Kode Pin</label>
+                                            <input className="form-control" ref="kodepin" placeholder="Masukan nomor rekening untuk nasabah" type="password"/>
                                         </div>
                                     </div>
                                     {/* /.box-body */}

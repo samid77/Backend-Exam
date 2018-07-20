@@ -3,7 +3,7 @@ import {Route} from 'react-router-dom';
 
 import Dashboard from './components/Dashboard';
 import DaftarNasabah from './components/DaftarNasabah';
-import EditForm from './components/EditForm';
+import FormEdit from './components/FormEdit';
 import Login from './components/Login';
 import AdminLogin from './components/AdminLogin';
 
@@ -17,6 +17,7 @@ class App extends Component {
         <Route path="/dashboard" component={Dashboard}/>
         <Route path="/adminlogin" component={AdminLogin}/>
         <Route path="/daftarnasabah" component={DaftarNasabah}/>
+        <Route path="/editdata" component={FormEdit} />
 
       </div>
     );
