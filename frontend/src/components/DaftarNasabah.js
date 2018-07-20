@@ -28,6 +28,10 @@ class DaftarNasabah extends Component {
         kodepin: e.kodepin.value,
     });
   }
+
+  deleteData = (e) => {
+    axios.post(`http://localhost:8002/deleteData`, {id: e});
+  }
   render() {
     const data = this.state.datanasabah.map(
         (d, index) => {
@@ -52,7 +56,7 @@ class DaftarNasabah extends Component {
             <td>{genderNasabah}</td>
             <td>
                 <Link to={{pathname: '/editdata', state: {IDnasabah: IDnasabah}}} className="btn btn-sm btn-flat btn-warning"><i className="fa fa-pencil"></i> Edit</Link>&nbsp;
-                <button className="btn btn-sm btn-flat btn-danger"><i className="fa fa-remove"></i> Delete</button>
+                <button type="button" onClick={() => { if (window.confirm('Are you sure you wish to delete this item?')) this.deleteData(IDnasabah) } } className="btn btn-sm btn-flat btn-danger"><i className="fa fa-remove"></i> Delete</button>
             </td>
         </tr>
         }

@@ -95,6 +95,21 @@ app.post('/updateData', (req, res) => {
     });
 
 });
+/** Delete data nasabah */
+app.post('/deleteData', (req, res) => {
+    var id = req.body.id;
+    var sql = `DELETE FROM nasabah WHERE id = "${id}"`;
+    db.query(sql, (err, result) => {
+        if(err) {
+            throw err;
+        } else {
+            res.send(result);
+        }
+    });
+
+});
+
+
 
 /** Menjalankan web server */
 app.listen(port, (req, res) => {
